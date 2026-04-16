@@ -6,7 +6,12 @@ const { SearchClient, AzureKeyCredential } = require("@azure/search-documents");
 const OpenAI = require("openai");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://nice-ocean-001b5c70f.2.azurestaticapps.net"
+  ]
+}));
 app.use(express.json({ limit: "20mb" }));
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "API is running" });
