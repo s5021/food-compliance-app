@@ -8,6 +8,9 @@ const OpenAI = require("openai");
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "20mb" }));
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", message: "API is running" });
+});
 
 const searchClient = new SearchClient(
   process.env.AZURE_SEARCH_ENDPOINT,
